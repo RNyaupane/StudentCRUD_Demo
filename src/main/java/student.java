@@ -100,6 +100,18 @@ import jakarta.faces.context.FacesContext;
             if(result !=0)
                 return "index.xhtml?faces-redirect=true";
             else return "create.xhtml?faces-redirect=true";
+
         }
+        //DELETE
+        public void delete(String name){
+            try{
+                connection = getConnection();
+                PreparedStatement stmt = connection.prepareStatement("delete from users where name = "+name);
+                stmt.executeUpdate();
+            }catch(Exception e){
+                System.out.println(e);
+            }
+        }
+
 
     }
