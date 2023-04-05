@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+      <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Student Registration</title>
+          <style type="text/css">
+              table {
+                  /*border-collapse: collapse;*/
+                  width: 25%;
+                  border: 2px solid black;
+              }
+              th, td {
+                  text-align: left;
+                  border: 1px solid black;
+                  padding: 8px;
+              }
+
+              tr:nth-child(even){background-color: #f2f2f2}
+              th {
+                  color: black;
+              }
+          </style>
+      </h:head>
+      <h:body>
+            <f:view>
+
+                <h1>Student Registration</h1><hr/>
+                <h:form id="student-form">
+                    <h:outputLabel for="name">Student Name:</h:outputLabel>
+                    <h:inputText id="name" value="" required="true" requiredMessage="Name is required"/><br/><br/>
+                    <h:outputLabel for="address">Student Address:</h:outputLabel>
+                    <h:inputText id="address" value="" required="true" requiredMessage="Address is required"/><br/><br/>
+
+                    <h:outputLabel>Select class: </h:outputLabel>
+                    <h:selectOneMenu value="">
+                        <f:selectItem itemValue="class1" itemLabel="" />
+                        <f:selectItem itemValue="class1" itemLabel="Class 1" />
+                        <f:selectItem itemValue="class2" itemLabel="Class 2" />
+                        <f:selectItem itemValue="class3" itemLabel="Class 3" />
+                    </h:selectOneMenu><br/><br/>
+
+                    <h:outputLabel>Select Subject </h:outputLabel>
+                    <h:selectOneMenu value="">
+                        <f:selectItem itemValue="class1" itemLabel="" />
+                        <f:selectItem itemValue="science" itemLabel="Science" />
+                        <f:selectItem itemValue="math" itemLabel="Math" />
+                        <f:selectItem itemValue="english" itemLabel="English" />
+                    </h:selectOneMenu><br/><br/>
+
+                    <h:commandButton id="submit-button" value="Save" action="response.xhtml"/>
+                    <h:commandButton id="delete-button" value="Delete" action="response.xhtml"/>
+                    <h:commandButton id="edit-button" value="Edit" action="response.xhtml" />
+
+
+                    <h1>Student Record</h1><hr/>
+                    <h:dataTable binding="#{table}" value="#{user.usersList()}" var="u">
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            <h:outputText value="#{u.name}"/>
+                        </h:column>
+                        <h:column><f:facet name="header">Address</f:facet>
+                        <h:outputText value="#{u.address}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Class</f:facet>
+                        <h:outputText value="#{u.class}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Subject</f:facet>
+                        <h:outputText value="#{u.subject}"/>
+                    </h:column>
+
+
+                </h:dataTable>
+
+            </h:form>
+        </f:view>
+      </h:body>
+</html>
